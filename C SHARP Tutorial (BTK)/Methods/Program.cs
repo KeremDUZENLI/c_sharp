@@ -32,15 +32,18 @@ namespace Methods
             Console.ReadLine();
         }
 
+
         static void Add()
         {
             Console.WriteLine("Added!");
         }
 
+
         static int Add2(int number1, int number2)
         {
             return number1 + number2;
         }
+
 
         static int Add3(int number1, int number2)
         {
@@ -48,15 +51,18 @@ namespace Methods
             return number1 + number2;
         }
 
+
         static int Multiply(int number1, int number2)
         {
             return number1 * number2;
         }
 
+
         static int Multiply(int number1, int number2, int number3)
         {
             return number1 * number2 * number3;
         }
+
 
         static int AddMultiple(params int[] numbers)
         {

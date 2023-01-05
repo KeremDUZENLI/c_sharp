@@ -24,8 +24,10 @@ namespace Conditionals
                 Console.WriteLine("Number is not 10");
             }
 
+
             var number2 = 10;
             Console.WriteLine(number2 == 10 ? "Number is 10" : "Number is not 10");
+
 
             var number3 = 50;
             switch (number3)
