@@ -1,5 +1,6 @@
 ﻿using DevFramework.Core.DataAccess.EntityFramework;
 using DevFramework.Northwind.DataAccess.Abstract;
+using DevFramework.Northwind.Entities.ComplexTypes;
 using DevFramework.Northwind.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,31 +9,23 @@ using System.Text;
 
 namespace DevFramework.Northwind.DataAccess.Concrete.EntityFramework
 {
-    class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContext> ,IProductDal
+    public class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContext>, IProductDal
     {
-        public Product Add(Product entity)
+        public List<ProductDetail> GetProductDetails()
         {
-            throw new NotImplementedException();
-        }
+            using (NorthwindContext context = new NorthwindContext())
+            {
+                var results = from p in context.Products
+                             join c in context.Categories on p.CategoryId equals c.CategoryId
+                             select new ProductDetail
+                             {
+                                 ProductId = p.ProductId,
+                                 ProductName = p.ProductName,
+                                 CategoryName = c.CategoryName
+                             };
 
-        public Product Update(Product entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Product entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Product Get(Expression<Func<Product, bool>> filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Product> GetList(Expression<Func<Product, bool>> filter = null)
-        {
-            throw new NotImplementedException();
+                return results.ToList();
+            }
         }
     }
 }
