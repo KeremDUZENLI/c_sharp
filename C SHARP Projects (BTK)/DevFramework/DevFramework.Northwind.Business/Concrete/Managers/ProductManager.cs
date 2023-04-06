@@ -10,25 +10,35 @@ using DevFramework.Core.CrossCuttingConcerns.Caching.Microsoft;
 using DevFramework.Core.Aspects.Postsharp.CacheAspects;
 using System.Data.Entity.Infrastructure.Interception;
 using DevFramework.Core.Aspects.Postsharp.LogAspects;
+using DevFramework.Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
+using DatabaseLogger = System.Data.Entity.Infrastructure.Interception.DatabaseLogger;
+using DevFramework.Core.Aspects.Postsharp.PerformanceAspects;
+using DevFramework.Core.Aspects.Postsharp.AuthorizationAspects;
+using System.Linq;
+using AutoMapper;
+using DevFramework.Core.Utilities.Mappings;
 
 namespace DevFramework.Northwind.Business.Concrete.Managers
 {
-    class ProductManager : IProductService
+    [LogAspect(typeof(FileLogger))]
+    public class ProductManager : IProductService
     {
         private IProductDal _productDal;
-        private readonly IQueryableRepository<Product> _queryable;
+        private readonly IMapper _mapper;
 
-        public ProductManager(IProductDal productDal, IQueryableRepository<Product> queryable)
+        public ProductManager(IProductDal productDal, IMapper mapper)
         {
             _productDal = productDal;
-            _queryable = queryable;
+            _mapper = mapper;
         }
 
         [CacheAspect(typeof(MemoryCacheManager))]
-        [LogAspect(typeof(DatabaseLogger))]
+        [PerformanceCounterAspect(2)]
+        [SecuredOperation(Roles="Admin,Editor,Student")]
         public List<Product> GetAll()
         {
-            return _productDal.GetList();
+            var products = _mapper.Map<List<Product>>(_productDal.GetList());
+            return products;
         }
 
         public Product GetById(int id)

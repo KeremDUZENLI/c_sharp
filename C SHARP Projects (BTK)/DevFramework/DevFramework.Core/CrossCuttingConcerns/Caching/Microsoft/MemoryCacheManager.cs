@@ -55,5 +55,10 @@ namespace DevFramework.Core.CrossCuttingConcerns.Caching.Microsoft
                 Remove(item.Key);
             }
         }
+
+        public void RemoveByPattern(bool v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

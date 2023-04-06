@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33130.400
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevFramework.Core", "DevFramework.Core\DevFramework.Core.csproj", "{212A9126-4F34-499B-9174-31A3057D6176}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevFramework.Core", "DevFramework.Core\DevFramework.Core.csproj", "{212A9126-4F34-499B-9174-31A3057D6176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevFramework.Northwind.Entities", "DevFramework.Northwind.Entities\DevFramework.Northwind.Entities.csproj", "{C6A24958-E94C-4695-8ACE-20AD1C4FB5AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevFramework.Northwind.Entities", "DevFramework.Northwind.Entities\DevFramework.Northwind.Entities.csproj", "{C6A24958-E94C-4695-8ACE-20AD1C4FB5AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevFramework.Northwind.DataAccess", "DevFramework.Northwind.DataAccess\DevFramework.Northwind.DataAccess.csproj", "{94E25671-5D95-4ACC-B9DF-FDBBBB518B0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevFramework.Northwind.DataAccess", "DevFramework.Northwind.DataAccess\DevFramework.Northwind.DataAccess.csproj", "{94E25671-5D95-4ACC-B9DF-FDBBBB518B0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevFramework.Northwind.Business", "DevFramework.Northwind.Business\DevFramework.Northwind.Business.csproj", "{096E7846-4617-4E17-9BBD-017E6AD1F4E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevFramework.Northwind.Business", "DevFramework.Northwind.Business\DevFramework.Northwind.Business.csproj", "{096E7846-4617-4E17-9BBD-017E6AD1F4E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevFramework.Northwind.MvcWebUI", "DevFramework.Northwind.MvcWebUI\DevFramework.Northwind.MvcWebUI.csproj", "{558F4E4F-68DE-47BE-BF22-134D56341743}"
 EndProject
@@ -41,6 +41,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DevFramework.Northwind.WcfS
 		VWDPort = "54838"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DevFramework.Northwind.MvcAngularUI", "DevFramework.Northwind.MvcAngularUI\DevFramework.Northwind.MvcAngularUI.vbproj", "{5897E7E9-32F7-4794-9053-6871574AA1CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +90,10 @@ Global
 		{4974EB2D-2114-49B8-BAAD-96B211500AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4974EB2D-2114-49B8-BAAD-96B211500AB7}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{4974EB2D-2114-49B8-BAAD-96B211500AB7}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{5897E7E9-32F7-4794-9053-6871574AA1CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5897E7E9-32F7-4794-9053-6871574AA1CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5897E7E9-32F7-4794-9053-6871574AA1CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5897E7E9-32F7-4794-9053-6871574AA1CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
