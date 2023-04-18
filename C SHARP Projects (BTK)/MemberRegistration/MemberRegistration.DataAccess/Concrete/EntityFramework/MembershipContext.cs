@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemberRegistration.DataAccess.Concrete.EntityFramework.Mappings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace MemberRegistration.DataAccess.Concrete.EntityFramework
         {
             Database.SetInitializer<MembershipContext>(null);
         }
-
+        
         public DbSet<Member> Members { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
