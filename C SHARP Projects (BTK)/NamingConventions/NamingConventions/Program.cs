@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Business.Abstract;
+using Business.Utilities;
+using Entity.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +13,9 @@ namespace NamingConventions
     {
         static void Main(string[] args)
         {
-        }
-    }
+            IPersonService customerService = NinjectInstanceFactory.GetInstance<IPersonService>();
 
-    class ProductManager
-    {
-        public ProductManager()
-        {
-
-        }
-
-        public void GetAllByCategoryId(int categoryId)
-        {
-
+            customerService.Add(new Customer());
         }
     }
 }
