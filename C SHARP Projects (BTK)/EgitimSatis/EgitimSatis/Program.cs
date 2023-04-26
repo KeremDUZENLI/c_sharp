@@ -10,7 +10,7 @@ namespace EgitimSatis
     {
         static void Main(string[] args)
         {
-            IEgitimService egitimService = new EgitimManager(new EfEgitimDal());
+            IEgitimService egitimService = new EgitimManager(new EfEgitimDal(), new YüzdelikIndirimFiyatManager());
             foreach (var egitim in egitimService.ListeleEgitimler())
             {
                 Console.WriteLine(egitim.Ad + " = " + egitim.Fiyat);
@@ -36,31 +36,19 @@ namespace EgitimSatis
     class EgitimManager : IEgitimService
     {
         IEgitimDal _egitimDal;
+        IKampanyaService _kampanyaService;
 
-        public EgitimManager(IEgitimDal egitimDal)
+        public EgitimManager(IEgitimDal egitimDal, IKampanyaService kampanyaService)
         {
             _egitimDal = egitimDal;
+            _kampanyaService = kampanyaService;
         }
 
         public List<Egitim> ListeleEgitimler()
         {
             List<Egitim> egitimler = _egitimDal.ListeleEgitimler();
-            StandardFiyataGoreGuncelle(egitimler);
+            _kampanyaService.FiyatGuncelle(egitimler);
             return egitimler;
-        }
-
-        private void StandardFiyataGoreGuncelle(List<Egitim> egitimler)
-        {
-            foreach (var egitim in egitimler)
-            {
-                egitim.Fiyat = GuncelStandardFiyatiGetir();
-            }
-        }
-
-        private decimal GuncelStandardFiyatiGetir()
-        {
-            // veri tabanına bağlan
-            return 25;
         }
     }
 
@@ -85,5 +73,44 @@ namespace EgitimSatis
     interface IEgitimService
     {
         List<Egitim> ListeleEgitimler();
+    }
+
+    interface IKampanyaService
+    {
+        void FiyatGuncelle(List<Egitim> egitimler);
+    }
+
+    class StandartFiyatCampanyaManager : IKampanyaService
+    {
+        public void FiyatGuncelle(List<Egitim> egitimler)
+        {
+            foreach (var egitim in egitimler)
+            {
+                egitim.Fiyat = GuncelStandartFiyatiGetir();
+            }
+        }
+
+        private decimal GuncelStandartFiyatiGetir()
+        {
+            // veri tabanına bağlan
+            return 25;
+        }
+    }
+
+    class YüzdelikIndirimFiyatManager : IKampanyaService
+    {
+        public void FiyatGuncelle(List<Egitim> egitimler)
+        {
+            foreach (var egitim in egitimler)
+            {
+                egitim.Fiyat = egitim.Fiyat - (egitim.Fiyat * YuzdelikIndirimiGetir());
+            }
+        }
+
+        private decimal YuzdelikIndirimiGetir()
+        {
+            // veri tabanına bağlan
+            return Convert.ToDecimal(0.90);
+        }
     }
 }
